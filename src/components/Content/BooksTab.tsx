@@ -1,14 +1,25 @@
 import { Tabs } from "@mantine/core";
 import CardBook from "./CardBook";
-import { dataBooks } from "../../types/User";
+
+import { useEffect, useState } from "react";
+import ApiClient from "../../services/ApiClient";
+import { Book } from "../../types/Books";
 
 const BooksTab = () => {
   const genres = ["Business", "Science", "Fiction", "Philosophy", "Biography"];
   const itemElements = [];
+ 
+  
+  const [books, setBooks] = useState<Book[]>([]);
 
-
-  for (let i = 0; i < 6; i++) {
-    itemElements.push(<CardBook key={i} genre="" index={i+1} book={dataBooks[i]} />);
+  useEffect(() => {
+    ApiClient.get<Book[]>("/Book").then((response) => {
+      console.log(response.data);
+      setBooks(response.data);
+    });
+  }, []);
+  for (let i = 0; i < books.length; i++) {
+    itemElements.push(<CardBook key={i}   book={books[i]} />);
   }
   return (
     <div className="">
@@ -33,8 +44,8 @@ const BooksTab = () => {
           <Tabs.Panel key={index} value={genre}>
             <div className="container ">
               <div className="row g-2">
-              {dataBooks.map((book)=>(
-               book.value===genre&&(<CardBook genre={genre} index={index} book={book}/>)
+              {books.map((book)=>(
+               book.category.name===genre&&(<CardBook   book={book}/>)
   ))}
                   
                

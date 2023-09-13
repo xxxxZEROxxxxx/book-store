@@ -4,6 +4,7 @@ export type User = {
   email: string;
 };
 export type book ={
+  id:number
   title :string,
   author:string,
   rating:number,

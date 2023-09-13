@@ -14,9 +14,12 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store.ts";
 import ProtectedRoute from "./ProtectedRoute.tsx";
 import { PersistGate } from "redux-persist/integration/react";
-import Dashboard from "./router/Dashboard.tsx";
+import Dashboard from "./router/Dashboard/Dashboard.tsx";
 import Books from "./router/Books.tsx";
 import BookDetails from "./router/BookDetails.tsx";
+import AddBook from "./router/Dashboard/AddBook.tsx";
+import AddCategory from "./router/Dashboard/AddCategory.tsx";
+import AddAuthor from "./router/Dashboard/AddAuthor.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +30,12 @@ const router = createBrowserRouter(
 
       <Route element={<ProtectedRoute />}>
         <Route index path="/Dashboard" element={<Dashboard />}></Route>
+       
+          <Route path="/Add"element={<AddBook/>} />
+
+          <Route path="/AddCategory"element={<AddCategory/>} />
+          <Route path="/AddAuthor"element={<AddAuthor/>} />
+       
       </Route>
       <Route path="/Books" >
         <Route index  element={<Books />} />

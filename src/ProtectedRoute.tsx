@@ -4,8 +4,8 @@ import { HideHeader } from "./redux/HideSlice";
 
 const ProtectedRoute = () => {
     const dispatch = useAppDispatch();
-  const isAuth = useAppSelector((state) => state.auth);
-  if (isAuth.user?.isLogin) {
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  if (isAuth) {
     return <Outlet />;
   } else{ dispatch(HideHeader()); return <Navigate to={"/Login"}  /> }
 };

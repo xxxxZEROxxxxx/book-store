@@ -4,6 +4,7 @@ import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import  HideHeader  from "./HideSlice";
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, persistStore } from "redux-persist";
 import storage from "redux-persist/es/storage";
+import BookSlice from "./BookSlice";
 
 const persistConfig = {
   key: "root",
@@ -14,6 +15,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: authSlice,
   Hide: HideHeader,
+  books:BookSlice,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
