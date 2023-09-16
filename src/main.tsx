@@ -15,8 +15,8 @@ import { persistor, store } from "./redux/store.ts";
 import ProtectedRoute from "./ProtectedRoute.tsx";
 import { PersistGate } from "redux-persist/integration/react";
 import Dashboard from "./router/Dashboard/Dashboard.tsx";
-import Books from "./router/Books.tsx";
-import BookDetails from "./router/BookDetails.tsx";
+import Books from "./router/Books/Books.tsx";
+import BookDetails from "./router/Books/BookDetails.tsx";
 import AddBook from "./router/Dashboard/AddBook.tsx";
 import AddCategory from "./router/Dashboard/AddCategory.tsx";
 import AddAuthor from "./router/Dashboard/AddAuthor.tsx";
@@ -28,17 +28,21 @@ const router = createBrowserRouter(
       <Route path="/Login" element={<Login />} />
       <Route path="/Register" element={<Register />} />
 
-      <Route element={<ProtectedRoute />}>
-        <Route index path="/Dashboard" element={<Dashboard />}></Route>
-       
-          <Route path="/Add"element={<AddBook/>} />
-
-          <Route path="/AddCategory"element={<AddCategory/>} />
-          <Route path="/AddAuthor"element={<AddAuthor/>} />
-       
+      <Route  path="/Dashboard/*" element={<ProtectedRoute />}>
+     
+        <Route index element={<Dashboard />} />
+          <Route path="Book">
+            <Route path="Add" element={<AddBook />}></Route>
+          </Route>
+          <Route path="Category">
+            <Route path="Add" element={<AddCategory />}></Route>
+          </Route>
+          <Route path="Author">
+            <Route path="Add" element={<AddAuthor />}></Route>      
+        </Route>
       </Route>
-      <Route path="/Books" >
-        <Route index  element={<Books />} />
+      <Route path="/Books">
+        <Route index element={<Books />} />
         <Route path=":BookId" element={<BookDetails />} />
       </Route>
     </Route>

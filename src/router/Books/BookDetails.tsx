@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { bookDetails } from "../types/Book";
-import ApiClient, { baseUrl } from "../services/ApiClient";
+import { bookDetails } from "../../types/Book";
+import ApiClient, { baseUrl } from "../../services/ApiClient";
 
 const BookDetails = () => {
   const { BookId } = useParams();
@@ -51,8 +51,12 @@ const BookDetails = () => {
 
                       <h5>${book.price}</h5>
                       <small>{book.about}</small>
+                     
                     </div>
+                    <button style={{width:"400px"}} className="btn btn-primary mt-4">Add to card</button>
+
                   </div>
+                  
                 </div>
               </div>
             </div>
