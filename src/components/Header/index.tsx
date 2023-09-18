@@ -20,7 +20,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <NavLink to={"/"} className="navbar-brand">
-           <img  src="/src/assets/vecteezy_black-and-white.png"  style={{ width: "140px", height: "90px" }}/>
+           <img  src="https://i.imgur.com/q84KA5n.png"  style={{ width: "150px", height: "auto" }}/>
           </NavLink>
           <button
             onClick={handleToggle}
