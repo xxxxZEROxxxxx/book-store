@@ -9,7 +9,7 @@ import ApiClient from "../../services/ApiClient";
 import { Author, Category } from "../../types/Books";
 
 const MAX_FILE_SIZE = 500000;
-const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg"];
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg","image/png","image/webp"];
 const schema = z.object({
   name: z.string().min(2, { message: " Name is required" }),
   price: z

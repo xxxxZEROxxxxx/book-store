@@ -2,11 +2,19 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { bookDetails } from "../../types/Book";
 import ApiClient, { baseUrl } from "../../services/ApiClient";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { addBook, markAsAdded } from "../../redux/BookSlice"; 
+
 
 const BookDetails = () => {
   const { BookId } = useParams();
   const [book, setBook] = useState<bookDetails>({} as bookDetails);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch=useAppDispatch()
+  const { books } = useAppSelector((state) => state.books);
+
+  
+  const isBookInCart = books.some((cartBook) => cartBook.id === book.id);
 
   useEffect(() => {
     setIsLoading(true);
@@ -31,7 +39,7 @@ const BookDetails = () => {
             <div className="col-lg-12 p-5">
               <div
                 className="card mb-3"
-                style={{ maxWidth: "1000px", height: "400px" }}
+                style={{ maxWidth: "1000px", height: "auto" }}
               >
                 <div className="row g-0">
                   <div className="col-4 col-md-4">
@@ -53,10 +61,23 @@ const BookDetails = () => {
                       <small>{book.about}</small>
                      
                     </div>
-                    <button style={{width:"400px"}} className="btn btn-primary mt-4">Add to card</button>
-
+                    <button
+                      style={{ width: "400px" }}
+                      onClick={() => {
+                        if (!isBookInCart) {
+                          
+                          dispatch(addBook(book));
+                         
+                          dispatch(markAsAdded(book.id));
+                        }
+                      }}
+                      
+                      disabled={isBookInCart}
+                      className="btn btn-primary mt-4"
+                    >
+                      {isBookInCart ? "Already in Cart" : "Add to Cart"}
+                    </button>
                   </div>
-                  
                 </div>
               </div>
             </div>
@@ -68,3 +89,4 @@ const BookDetails = () => {
 };
 
 export default BookDetails;
+

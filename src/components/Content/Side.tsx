@@ -2,7 +2,7 @@
 const Side = () => {
   return (
     <div className=""
-    >Side</div>
+    ></div>
   )
 }
 

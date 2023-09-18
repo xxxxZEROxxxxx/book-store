@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { Book } from "../../types/Books";
 import Modal from "../../components/Models/Modal";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [books, setBooks] = useState<Book[]>([]);
-
+  const navigate = useNavigate();
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 
   const fetchBooks = () => {
@@ -48,12 +49,12 @@ const Dashboard = () => {
       <div className="container mt-5 mb-3">
         <div className="row">
           {books.map((book) => (
-            <div className="card" style={{ width: "300px" }}>
+            <div key={book.id} className="card" style={{ width: "300px" }}>
               <img
                 src={`${baseUrl}/images/thumbs/med/${book.image}`}
                 alt=""
                 className=""
-                style={{ width: "200px", height: "200px" }}
+               
               />
               <div className="card-body">
                 <h5 className="card-title">{book.name}</h5>
@@ -71,7 +72,9 @@ const Dashboard = () => {
                 >
                   Delete
                 </button>
-                <button onClick={() => {}} className="btn btn-outline-success">
+                <button onClick={() => {  navigate(`/Dashboard/Book/${book.id}`, {
+                      replace: true,
+                    })}} className="btn btn-outline-success">
                   Edit
                 </button>
               </div>

@@ -1,12 +1,12 @@
 
+
 const Books = () => {
+
   return (
-    <div>
+    <>
+    Books
+    </>
+  );
+};
 
-gggg
-        
-    </div>
-  )
-}
-
-export default Books
+export default Books;

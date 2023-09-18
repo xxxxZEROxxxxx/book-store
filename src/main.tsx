@@ -20,6 +20,8 @@ import BookDetails from "./router/Books/BookDetails.tsx";
 import AddBook from "./router/Dashboard/AddBook.tsx";
 import AddCategory from "./router/Dashboard/AddCategory.tsx";
 import AddAuthor from "./router/Dashboard/AddAuthor.tsx";
+import EditBook from "./router/Dashboard/EditBook.tsx";
+import Cart from "./router/Cart.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,12 +29,13 @@ const router = createBrowserRouter(
       <Route index path="/" element={<Home />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Register" element={<Register />} />
-
+      <Route path="/Cart" element={<Cart />} />
       <Route  path="/Dashboard/*" element={<ProtectedRoute />}>
      
         <Route index element={<Dashboard />} />
           <Route path="Book">
-            <Route path="Add" element={<AddBook />}></Route>
+            <Route index path="Add" element={<AddBook />}></Route>
+            <Route path=":bookId" element={<EditBook />}></Route>
           </Route>
           <Route path="Category">
             <Route path="Add" element={<AddCategory />}></Route>
@@ -50,7 +53,6 @@ const router = createBrowserRouter(
 );
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
-    {" "}
     <PersistGate loading={null} persistor={persistor}></PersistGate>
     <RouterProvider router={router}></RouterProvider>
   </Provider>

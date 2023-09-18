@@ -45,7 +45,7 @@ const BooksTab = () => {
             <div className="container ">
               <div className="row g-2">
               {books.map((book)=>(
-               book.category.name===genre&&(<CardBook   book={book}/>)
+               book.category.name===genre&&(<CardBook   key={book.id} book={book}/>)
   ))}
                   
                
