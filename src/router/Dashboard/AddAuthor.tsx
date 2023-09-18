@@ -224,7 +224,8 @@ const AddAuthor = () => {
                           >
                             Delete
                           </button>
-                          <button
+                          <button  
+                          style={{marginLeft:"6px"}}
                             onClick={() => {
                               setEditingId(author.id);
                               setEditingAuthor(author.name);

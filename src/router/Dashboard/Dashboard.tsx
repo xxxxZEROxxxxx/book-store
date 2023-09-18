@@ -72,7 +72,7 @@ const Dashboard = () => {
                 >
                   Delete
                 </button>
-                <button onClick={() => {  navigate(`/Dashboard/Book/${book.id}`, {
+                <button  style={{marginLeft:"6px"}} onClick={() => {  navigate(`/Dashboard/Book/${book.id}`, {
                       replace: true,
                     })}} className="btn btn-outline-success">
                   Edit

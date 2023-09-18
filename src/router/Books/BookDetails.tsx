@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { bookDetails } from "../../types/Book";
 import ApiClient, { baseUrl } from "../../services/ApiClient";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
@@ -77,6 +77,12 @@ const BookDetails = () => {
                     >
                       {isBookInCart ? "Already in Cart" : "Add to Cart"}
                     </button>
+                    <h6 className="mt-4">
+                            <Link to={"/"} className="text-body">
+                              <i className="fas fa-long-arrow-alt-left me-2"></i>
+                              Back to store
+                            </Link>
+                          </h6> 
                   </div>
                 </div>
               </div>

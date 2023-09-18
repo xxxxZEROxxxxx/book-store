@@ -20,7 +20,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <NavLink to={"/"} className="navbar-brand">
-            Book store App
+           <img  src="/src/assets/Screenshot_2023-09-18_214226-removebg-preview.png"  style={{ width: "150px", height: "auto" }}/>
           </NavLink>
           <button
             onClick={handleToggle}

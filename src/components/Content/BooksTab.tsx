@@ -3,12 +3,13 @@ import CardBook from "./CardBook";
 
 import { useEffect, useState } from "react";
 import ApiClient from "../../services/ApiClient";
-import { Book } from "../../types/Books";
+import { Book, Category } from "../../types/Books";
+
 
 const BooksTab = () => {
-  const genres = ["Business", "Science", "Fiction", "Philosophy", "Biography"];
+
   const itemElements = [];
- 
+  const [categories, setCategories] = useState<Category[]>();
   
   const [books, setBooks] = useState<Book[]>([]);
 
@@ -17,7 +18,17 @@ const BooksTab = () => {
       console.log(response.data);
       setBooks(response.data);
     });
+    ApiClient.get("/Category")
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
   }, []);
+
+
+  
   for (let i = 0; i < books.length; i++) {
     itemElements.push(<CardBook key={i}   book={books[i]} />);
   }
@@ -27,9 +38,9 @@ const BooksTab = () => {
         <h4 className="mt-">Popular by Genre</h4>
         <Tabs.List position="right">
           <Tabs.Tab  value="ALL Genres">ALL Genres</Tabs.Tab>
-          {genres?.map((genre, index) => (
-            <Tabs.Tab key={index} value={genre}>
-              {genre}
+          {categories?.map((category, index) => (
+            <Tabs.Tab key={index} value={category.name}>
+              {category.name}
             </Tabs.Tab>
           ))}
         </Tabs.List>
@@ -40,12 +51,12 @@ const BooksTab = () => {
             </div>
           </div>
         </Tabs.Panel>
-        {genres?.map((genre, index) => (
-          <Tabs.Panel key={index} value={genre}>
+        {categories?.map((category, index) => (
+          <Tabs.Panel key={index} value={category.name}>
             <div className="container ">
               <div className="row g-2">
               {books.map((book)=>(
-               book.category.name===genre&&(<CardBook   key={book.id} book={book}/>)
+               book.category.name===category.name&&(<CardBook   key={book.id} book={book}/>)
   ))}
                   
                

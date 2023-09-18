@@ -221,11 +221,12 @@ const AddCategory = () => {
                             Delete
                           </button>
                           <button
+                          style={{marginLeft:"6px"}}
                             onClick={() => {
                               setEditingId(category.id);
                               setEditingCategory(category.name);
                             }}
-                            className="btn btn-outline-success"
+                            className="btn btn-outline-success  "
                           >
                             Edit
                           </button>

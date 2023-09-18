@@ -88,7 +88,7 @@ const EditBook = () => {
   });
 
   const handleEditBook = (data: FormData) => {
-    // console.log(data.ImageFile[0]);
+   
     const bookData = new FormData();
 
     bookData.append("Name", data.name);

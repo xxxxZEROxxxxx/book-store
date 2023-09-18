@@ -10,14 +10,14 @@ const Home = () => {
 
   return (
     <div>
-      <h1 className="text-center">Welcome to the home page</h1>
+  
       <br />
 
       <div className="row">
-        <div className="col-1 col-md-4">
+        <div className="col-1 col-md-2">
           <Side />
         </div>
-        <div className="col-11 col-md-8 ">
+        <div className="col-11 col-md-10 ">
           <BooksTab />
         </div>
       </div>
